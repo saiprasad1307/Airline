@@ -1,0 +1,71 @@
+{% extends 'home.html' %}
+{% block body %}
+{% load static %}
+
+
+<div class="container">
+    <h2 style="font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%" align="center">Search Booking By Booking Id</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:4%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Booking Id</label>
+    <input type="text" class="form-control" name="booking_id">
+
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+
+</form>
+</div>
+</div><hr>
+<div class="container" style="margin-top:5%">
+</div>
+<center><h4 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%"> Booking Id :- <span style="color:black">{{d1}}</span> </h4></center><hr>
+ <div class="container" style="width:90%">
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Sr. No</th>
+    <th>Booking ID</th>
+    <th>Username</th>
+       <th>Contact</th>
+    <th>Flight Name</th>
+    <th>Booking Date</th>
+      <th>Total</th>
+
+    <th>View Detail</th>
+    <th>Cancel Booking</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in data %}
+
+  <tr>
+      <td>{{forloop.counter}}</td>
+    <td>{{i.booking_id}}</td>
+    <td>{{i.user.username}}</td>
+       <td>{{i.mobile}}</td>
+    <td>{{i.airline.flight_name}}</td>
+    <td>{{i.date}}</td>
+      <td>{{i.total_price}}</td>
+
+      <td><a href="{% url 'booking_detail' i.booking_id %}"><button class="button button1">detail</button></a></td>
+      <td><a href="{% url 'delete_booking' i.booking_id %}" onclick="return confirm('Are you sure?')"><button class="button button1" id="#delete">cancel</button></a></td>
+
+  </tr>
+{% empty %}
+<tr>
+    <td colspan="9">Data Not Found</td>
+    </td>
+
+</tr>
+   {% endfor %}
+    </tbody>
+</table>
+
+ </div>
+
+</div>
+{% endblock %}

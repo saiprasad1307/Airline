@@ -1,0 +1,55 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .container{
+    border-radius:6px;
+    margin:2%;
+    }
+    .container-fluid{
+    margin-top:5%;
+    }
+</style>
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">View Feedback</h2></center><hr>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+   
+    <th>Username</th>
+    <th>Email Id</th>
+    <th>Feedback Date</th>
+    <th>Feedback Message</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in feed %}
+  <tr>
+
+    <td>{{i.username}}</td>
+    <td>{{i.user.email}}</td>
+    <td>{{i.date}}</td>
+    <td>{{i.msg}}</td>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+ </div></center>
+
+
+</div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+        </script>
+
+
+{% endblock %}

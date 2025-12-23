@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body %}
+<div class="container" style = "margin-top : 150px">
+      <h2 class = text-center style = "font-family : 'Monotype Corsiva' ; color : #E6120E">About Us</h2>
+      <div class="row">
+          <div class="col-sm-4">
+              <img src="{% static 'images/air1.jpg' %}" width=300 height = 200 class="img-responsive">
+          </div>
+          <div class="col-sm-8" style = "font-weight : bold ; margin-top : 30px">
+         Gone are the days when travelers need to visit their local travel agent and settle on a single fare when booking flights. Today, the Internet is a far easier option for customers to purchase airline tickets. The advantages range from quick and easy ways to compare prices on several airlines to allowing travelers to print boarding passes at home.
+              When you book a flight online, you have the freedom to shop around for the best price. Travelers don't get this kind of freedom when booking flights through a single travel agent or calling an airline. Purchasing the ticket online means customers can check out many airlines before making their choice
+          </div>
+      </div>
+  </div>
+  
+
+{% endblock %}

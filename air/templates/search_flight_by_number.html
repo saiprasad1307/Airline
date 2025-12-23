@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+{% block body %}
+{% load static %}
+
+
+<div class="container">
+    <h2 style="font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%" align="center">Search Flight By Flight Number</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:4%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Flight Number</label>
+    <input type="text" class="form-control" name="number">
+
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+
+</form>
+</div>
+</div><hr>
+<div class="container" style="margin-top:5%;">
+</div>
+<center><h4 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%"> Flight Number :- <span style="color:black">{{d1}}</span> </h4></center><hr>
+<div class="container" style="width:90%">
+<table class="table table-bordered" id="myTable" >
+  <thead>
+  <tr>
+    <th>Sr. No</th>
+    <th>Image</th>
+    <th>Company Name</th>
+    <th>Flight Name</th>
+    <th>Flight Number</th>
+    <th>Airport Name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in data %}
+  <tr>
+      <td>{{forloop.counter}}</td>
+    <td><img src="{{i.image.url}}" style="width:100px"></td>
+    <td>{{i.company_name}}</td>
+    <td>{{i.flight_name}}</td>
+    <td>{{i.airline_number}}</td>
+    <td>{{i.airport_name}}</td>
+            <td><a href="{% url 'view_flight_detail' i.id %}"><button class="button button1">View Detail</button></a>
+            <a href="{% url 'edit_flight' i.id %}"><button class="button button1">Edit Detail</button></a>
+     <a href="{% url 'delete_flight' i.id %}"><button class="button button1" onclick="return confirm('Are you sure?')">Delete</button></a></td>
+  </tr>
+{% empty %}
+<tr>
+    <td colspan="8">Data Not Found</td>
+    </td>
+</tr>
+   {% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+
+</div>
+{% endblock %}

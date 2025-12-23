@@ -1,0 +1,103 @@
+{% extends 'home.html' %}
+{% block body %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+<center><h2 style="color:red;margin-top:2%">View Flight Detail</h2></center><hr>
+
+|<div class="container" style="border:1px solid white" align="center">
+<table style="width:70%;margin-bottom:150px">
+    <tr style="background-color:darkblue;color:yellow">
+    <th> Attribute</th>
+    <td>Values</td>
+  </tr>
+  <tr>
+    <th> Company Name</th>
+    <td>{{air.company_name}}</td>
+  </tr>
+     <tr>
+    <th> Airport Name</th>
+    <td>{{air.airport_name}}</td>
+  </tr>
+  <tr>
+    <th> Flight Name</th>
+    <td>{{air.flight_name}}</td>
+  </tr>
+  <tr>
+    <th>  Flight Number</th>
+    <td>{{air.airline_number}}</td>
+  </tr>
+     <tr>
+    <th>  From City</th>
+    <td>{{air.from_city}}</td>
+  </tr>
+     <tr>
+    <th> Destination City</th>
+    <td>{{air.to_city}}</td>
+  </tr>
+  <tr>
+    <th> From City Arrival Time</th>
+    <td>{{air.from_city_arrival}}</td>
+  </tr>
+  <tr>
+    <th>  From City departure Time</th>
+    <td>{{air.from_city_departure}}</td>
+  </tr>
+     <tr>
+    <th> Destination City Arrival Time</th>
+    <td>{{air.to_city_arrival}}</td>
+  </tr>
+  <tr>
+    <th>  Destination City departure Time</th>
+    <td>{{air.to_city_departure}}</td>
+  </tr>
+     <tr>
+    <th>  Total Days</th>
+    <td>{{air.days}}</td>
+  </tr>
+      <tr>
+    <th> Total Business Seats</th>
+    <td>{{air.number_of_seat_b}}</td>
+  </tr>
+     <tr>
+    <th> Total Economic Seats</th>
+    <td>{{air.number_of_seat_e}}</td>
+  </tr>
+     <tr>
+    <th>  Business Seat Fare</th>
+    <td>{{air.fare_business}}</td>
+  </tr>
+     <tr>
+    <th>  Economic Seat Fare</th>
+    <td>{{air.fare_economy}}</td>
+  </tr>
+     <tr>
+    <th >  Image</th>
+    <td><img src="{{air.image.url}}" style="width:180px"></td>
+  </tr>
+    {% if request.user.is_staff %}
+    <tr>
+        <td colspan="2" style="text-align:right"> <a href="{% url 'edit_flight' air.id %}"><button class="button button1" >Edit Detail</button></a></td>
+
+  </tr>
+    {% else %}
+    <tr>
+
+        <td colspan="2" style="text-align:right"><a href="{% url 'book_detail' air.id %}"><button class="button button1">Book Now</button></a></td>
+  </tr>
+    {% endif %}
+</table>
+{% for i in messages %}
+<script>
+    alert("{{i}}")
+</script>
+{% endfor %}
+
+{% endblock %}

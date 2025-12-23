@@ -1,0 +1,123 @@
+{% extends 'home.html' %}
+{% block body %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+<center><h2 style="color:red;margin-top:2%">View Booking Detail</h2></center><hr>
+
+|<div class="container" style="border:1px solid white;margin-left:25%">
+<table style="width:70%;margin-bottom:150px">
+    <tr style="background-color:darkblue;color:yellow">
+    <th> Attribute</th>
+    <td>Values</td>
+  </tr>
+  <tr>
+    <th> Company Name</th>
+    <td>{{book.airline.company_name}}</td>
+  </tr>
+  <tr>
+    <th> Flight Name</th>
+    <td>{{book.airline.flight_name}}</td>
+  </tr>
+  <tr>
+    <th>  Flight Number</th>
+    <td>{{book.airline.airline_number}}</td>
+  </tr>
+     <tr>
+    <th>  Airport Name</th>
+    <td>{{book.airline.airport_name}}</td>
+  </tr>
+     <tr>
+    <th>  User Name</th>
+    <td>{{book.user.username}}</td>
+  </tr>
+     <tr>
+    <th>  From City</th>
+    <td>{{book.airline.from_city}}</td>
+  </tr>
+     <tr>
+    <th> Destination City</th>
+    <td>{{book.airline.to_city}}</td>
+  </tr>
+  <tr>
+    <th>Passanger Detail</th>
+      <td><table>
+         <table class="table table-bordered" id="myTable" >
+          <thead >
+          <tr >
+            <th style="background-color:darkblue">Sr. No</th>
+            <th style="background-color:darkblue">Full Name</th>
+            <th style="background-color:darkblue">Gender</th>
+            <th style="background-color:darkblue">Age</th>
+            <th style="background-color:darkblue">Total Price</th>
+          </tr></thead>
+      {% for i in pro %}
+          <tr>
+              <td>{{forloop.counter}}</td>
+          <td>{{i.first_name}}{{i.last_name}}</td>
+              <td>{{i.gender}}</td>
+              <td>{{i.age}}</td>
+              <td>{{i.total_price}}</td>
+    </tr>
+      {% endfor %}
+         </table>
+  </tr>
+  <tr>
+    <th>  Booking Id </th>
+    <td>{{book.booking_id}}</td>
+  </tr>
+     <tr>
+    <th> Total Price</th>
+    <td>{{book.total_price}}</td>
+  </tr>
+  <tr>
+    <th>  Booking Date</th>
+    <td>{{book.date}}</td>
+  </tr>
+     <tr>
+    <th>  Total Days</th>
+    <td>{{book.airline.days}}</td>
+  </tr>
+<!--      <tr>-->
+<!--    <th> Total Business Seats</th>-->
+<!--    <td>{{air.number_of_seat_b}}</td>-->
+<!--  </tr>-->
+<!--     <tr>-->
+<!--    <th> Total Economic Seats</th>-->
+<!--    <td>{{air.number_of_seat_e}}</td>-->
+<!--  </tr>-->
+<!--     <tr>-->
+<!--    <th>  Business Seat Fare</th>-->
+<!--    <td>{{air.fare_business}}</td>-->
+<!--  </tr>-->
+<!--     <tr>-->
+<!--    <th>  Economic Seat Fare</th>-->
+<!--    <td>{{air.fare_economy}}</td>-->
+<!--  </tr>-->
+<!--     <tr>-->
+<!--    <th >  Image</th>-->
+<!--    <td><img src="{{air.image.url}}" style="width:180px"></td>-->
+<!--  </tr>-->
+<!--    <tr>-->
+<!--        <th> <a href="#"><button class="button button1">Edit Detail</button></a></th>-->
+<!--        <td></td>-->
+<!--  </tr>-->
+<!--    <tr>-->
+
+
+  </tr>
+</table>
+{% for i in messages %}
+<script>
+    alert("{{i}}")
+</script>
+{% endfor %}
+
+{% endblock %}

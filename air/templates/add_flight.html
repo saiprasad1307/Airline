@@ -1,0 +1,120 @@
+{% extends 'home.html' %}
+{% block body %}
+{% load static %}
+<div class="container">
+  <center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">Add Flight </h2></center><hr>
+
+<div class="container-fluid" style="width:90%;margin-top:5%">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Company Name</label>
+      <input type="text" class="form-control" placeholder="Enter Company Name" name="company_name" id="inputEmail4">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Flight Name</label>
+      <input type="text" class="form-control" placeholder="Enter Flight Name" name="flight_name" id="inputEmail4">
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Flight Number</label>
+      <input type="text" class="form-control" placeholder="Enter Flight Number" name="airline_number" id="inputEmail4">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Total Days</label>
+      <input type="text" class="form-control" placeholder="Enter Days" name="days" id="inputEmail4">
+    </div>
+    </div>
+      <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">From City</label>
+        <select class="form-control" name="from_city" id="cars" >
+      {% for i in city_choices %}
+    <option value="{{i.0}}">{{i.0}}</option>
+{% endfor %}
+  </select>
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Destination City</label>
+
+        <select class="form-control" name="to_city" id="cars" >
+      {% for i in city_choices %}
+    <option value="{{i.0}}">{{i.0}}</option>
+{% endfor %}
+  </select>
+    </div>
+    </div>
+        <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">From City Arrival Time</label>
+      <input type="time" class="form-control" placeholder="Enter Time" name="from_city_arrival" id="inputEmail4">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">From City departure Time</label>
+      <input type="time" class="form-control" placeholder="Enter time" name="from_city_departure" id="inputEmail4">
+    </div>
+    </div>
+     <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Destination City Arrival Time</label>
+      <input type="time" class="form-control" placeholder="Enter Time" name="to_city_arrival" id="inputEmail4">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Destination City departure Time</label>
+      <input type="time" class="form-control" placeholder="Enter time" name="to_city_departure" id="inputEmail4">
+    </div>
+    </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Total Bussiness Seats</label>
+      <input type="number" class="form-control" placeholder="Enter seats" name="number_of_seat_b" id="inputEmail4">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Total Economic Seats</label>
+      <input type="number" class="form-control" placeholder="Enter seats" name="number_of_seat_e" id="inputEmail4">
+    </div>
+    </div>
+<div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Bussiness Seat Fare</label>
+      <input type="text" class="form-control" placeholder="Enter fare" name="fare_economy" id="inputEmail4">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Economic Seat Fare</label>
+      <input type="text" class="form-control" placeholder="Enter fare" name="fare_business" id="inputEmail4">
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Flight Image</label>
+      <input type="file" class="form-control" name="image" id="inputEmail4">
+    </div>
+                <div class="form-group col-md-6">
+      <label for="inputEmail4">Airport Name</label>
+      <input type="text" class="form-control" placeholder="Enter Airport Name" name="airport_name" id="inputEmail4">
+    </div>
+    </div>
+<!--
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputState">Category</label>
+<select id="inputState" class="form-control" name="cat">
+  {% for i in cat %}
+<option value="{{i.name}}">{{i.name}}</option>
+  {% endfor %}
+</select>
+</div>
+-->
+  <button type="submit" class="btn btn-primary" style="margin-left:5px;margin-bottom:45px;width:450px;background-color:darkblue">Submit</button>
+</form>
+</div>
+</div>
+{% for i in messages %}
+<script>
+    alert("{{i}}")
+</script>
+{% endfor %}
+
+{% endblock %}

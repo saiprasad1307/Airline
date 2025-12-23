@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+{% block body %}
+{% load static %}
+
+<h3 style="background-color:black;color:yellow;margin-top:1%"><marquee>Flight Booking System :- {{request.user.username}} Dashboard </marquee></h3>
+
+<div class="container">
+    <h3 style="margin-top:10%;color:maroon;margin-right:7%" align="center">Flight Booking System - {{request.user.username}} Dashboard </h3><hr>
+
+<div class="container-fluid" style="width:51%;margin-top:3%">
+ <a href="{% url 'user_home' %}"><div class="container-fluid" style="background-color:darkblue;color:white">
+   <h5 style="padding:8px;">Dashboard</h5></div></a>
+</div>
+<a href="{% url 'search_flight' %}"><div class="container-fluid" style="width:48%;background-color:darkblue;color:white">
+  <h5 style=";padding:8px;background-color:maroon"> Search</h5></div></a>
+</div>
+
+ <a href="{% url 'mybooking' %}"> <div class="container-fluid" style="width:35%;background-color:darkblue;color:white">
+   <h5 style="padding:8px;">My Booking</h5></div></a>
+</div>
+<a href="{% url 'Change_Password' %}"><div class="container-fluid" style="width:35%;background-color:darkblue;color:white">
+  <h5 style="padding:8px;;background-color:maroon">Change Password </h5></div></a>
+
+<a href="{% url 'logout' %}"> <div class="container-fluid" style="width:35%;background-color:darkblue;color:white">
+   <h5 style="padding:8px;">Logout</h5></div></a>
+</div>
+</div>
+{% for i in messages %}
+<script>
+    alert("{{i}}")
+</script>
+{% endfor %}
+{% endblock %}

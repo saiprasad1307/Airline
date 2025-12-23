@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+{% block body %}
+{% load static %}
+
+
+<h3 style="background-color:black;color:yellow"><marquee>Flight Booking System :- Admin Dashboard</marquee></h3>
+<div class="container" style="width:100%">
+
+    <img  src="{% static 'images/img5.jpg' %}" style="width:1500px;height:350px">
+
+<div class="container-fluid" style="width:40%;margin-top:1%">
+ <a href="{% url 'add_flight' %}"><div class="container-fluid" style="margin-bottom:0px;background-color:darkblue;color:white">
+   <h5 style="margin-left:200px;padding:8px;">Add Flight</h5></div></a>
+</div>
+    <div class="container-fluid" style="width:60%;margin-top:1%">
+<a href="{% url 'view_flight' %}"><div class="container-fluid" style="margin-bottom:0px;background-color:maroon;color:white">
+  <h5 style="margin-left:350px;padding:8px;"> View Flight</h5></div></a>
+</div>
+    <div class="container-fluid" style="width:80%;margin-top:1%">
+ <a href="{% url 'view_user' %}"> <div class="container-fluid" style="margin-bottom:0px;background-color:darkblue;color:white">
+   <h5 style="margin-left:500px;padding:8px;">View Users</h5></div></a>
+</div>
+    <div class="container-fluid" style="width:100%;margin-top:1%">
+<a href="{% url 'admin_view_booking' %}"><div class="container-fluid" style="margin-bottom:0px;background-color:maroon;color:white">
+  <h5 style="margin-left:650px;padding:8px;">View Booking </h5></div></a>
+</div>
+</div>
+{% for i in messages %}
+<script>
+    alert("{{i}}")
+</script>
+{% endfor %}
+{% endblock %}

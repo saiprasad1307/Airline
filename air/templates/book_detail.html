@@ -1,0 +1,219 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    input[type=text][type=password]{
+    border-radius:8px;
+    width:600px;
+    height:16px;
+    }
+</style>
+{% if error %}
+<script>
+    alert('Passenger Added Successfully')
+    window.location='{% url 'book_detail' data2.id %}'
+</script>
+{% endif %}
+<div style="color:Black;border:1px solid white;border-radius:8px;background-color:white;padding:50px;margin-bottom:2%;">
+
+    <h3><strong>Airline Detail</strong></h3><hr>
+    <table width="1300">
+        <tr>
+            <td><img src="{{data2.image.url}}" style="width:200px;height:70;margin-left:10%"></td>
+            <td><h5 style="margin-left:60%">{{data2.company_name }} - {{data2.flight_name}}</h5>
+          <h6 style="margin-left:60%">Flight Number :- {{data2.airline_number}}</h6>
+          <h6 style="margin-left:60%">From City :- {{data2.from_city}}</h6>
+          <h6 style="margin-left:60%">Business Class Fare :- {{data2.fare_business}}</h6>
+          <h6 style="margin-left:60%">Economy Class Fare :- {{data2.fare_economy}}</h6>
+        </tr>
+    </table><hr>
+
+        <hr><h3><strong>Enter Passenger Details</strong></h3><hr>
+
+<form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+    <div class="row container" align="center">
+    <div class="col-md-12 form-group">
+                    <table class="table table-bordered">
+
+                       <tr style="background-color:darkblue;color:yellow">
+                           <td>
+                            <label class="control-label" >First Name<span style="color:red">*</span></label>
+                           </td>
+<td>
+                            <label class="control-label" >Last Name<span style="color:red">*</span></label>
+                           </td>
+
+                           <td>
+                            <label class="control-label" >Age<span style="color:red">*</span></label>
+                           </td>
+                           <td>
+                            <label class="control-label" >Gender<span style="color:red">*</span></label>
+                           </td>
+
+                           <td>
+                                <label class="control-label" >Booking Type<span style="color:red">*</span></label>
+                           </td>
+                           <td>
+                           <button class="btn btn-primary pull-right addmoreattribute" href="#"><i class="fa fa-plus"></i>
+                               Add More</button>
+                           </td>
+                       </tr>
+
+                       </tr>
+                         <input type="hidden" id="fixvalue" value="{{fixed_stage}}">
+
+                    <div class="form-group addinput">
+
+                            {% for key,value in inventory_item.attribute.items  %}
+
+                                <tr>
+
+                           <td><input type="text" class="form-control" maxlength="50" name="fname-{{forloop.counter}}"  placeholder="Enetr First Name" value="{{key}}" required ></td>
+                           <td><input type="text" class="form-control" maxlength="50" name="lname-{{forloop.counter}}"  placeholder="Enter Last Name" value="{{key}}" required ></td>
+                           <td><input type="number" class="form-control" maxlength="50" name="age-{{forloop.counter}}"  placeholder="Stages" value="{{key}}" required ></td>
+                           <td>
+                               <div class="form-group">
+                                   <select required  class="form-control" name="gender-{{forloop.counter}}">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    </select>
+                                </div>
+
+                           </td>
+                           <td>
+                               <div class="form-group">
+                                   <select required  class="form-control" name="fare-{{forloop.counter}}">
+                                    <option value="{{data2.fare_economy}}">Economy Class</option>
+                                    <option value="{{data2.fare_business}}">Business Class</option>
+                                    </select>
+                                </div>
+                           </td>
+                                    <input type="hidden" value="{{forloop.counter}}" name="total_input">
+                                <td><span class="ibtnDel"><i class="fa fa-trash-o text-danger"></i></span></td>
+                                </tr>
+                                    </tr>
+
+                            {% endfor %}
+                        <input type="hidden" class="form-control" id="totalstage" name="total_stage" value="1" >
+
+
+                    </div>
+
+
+
+
+                     </table>
+</div></div>
+
+
+
+
+        <hr><h3><strong>Enter Other Details</strong></h3><hr>
+
+
+        <input type="text" placeholder=" Mobile Number" name="mobile" style="border-radius:8px;width:200px;height:35px;margin-left:20px" required>
+        <input type="text" placeholder="Destination city" name="city" style="border-radius:8px;width:200px;height:35px;margin-left:20px" value = {{data2.to_city }} readonly>
+        <input type="number" placeholder="Destination pincode" name="pincode" style="border-radius:8px;width:200px;height:35px;margin-left:20px" required>
+
+        <input type="text" placeholder="Destination Country" name="country" style="border-radius:8px;width:200px;height:35px;margin-left:20px" required>
+
+
+
+
+
+<div style="background-color:darkblue;padding-left:990px;border-radius:8px;padding-top:3px;padding-bottom:3px;margin-top:5%"><h4 style="color:red;"><strong>Total = <input type="number"  style="width:40%" name="total_price" id="total_price" readonly></strong>
+  <input type="submit" class="pull-right btn btn-primary addallvalueattribute" value="Add">
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+
+var stage = $("#fixvalue").val();
+    function addmorefields(flag){
+        var newRow = $("<tr>");
+              var cols = "";
+              stage ++
+
+              cols += '<td><input type="text" class="form-control" required maxlength="20" name="fname'+stage+'" placeholder="Enter First Name"></td>';
+              cols += '<td><input type="text" class="form-control" required maxlength="20" name="lname'+stage+'" placeholder="Enter Last Name"></td>';
+              cols += '<td><div class="form-group"><input type="number" required required class="form-control" name="age'+stage+'" placeholder="Age"></div></td>';
+              cols += '<td><div class="form-group"><select required  class="form-control" name="gender'+stage+'"><option value="Male">Male</option><option value="Female">Female</option></select></div></td>';
+              cols += '<td><div class="form-group"><select required  class="form-control" onchange="add_total()" name="fare'+stage+'" id="fare'+stage+'"><option value="">Choose a fare</option><option value="{{data2.fare_economy}}">Economy Fare</option><option value="{{data2.fare_business}}">Business Fare</option></select></div></td>';
+//              cols += '<td><a class="btn btn-link addmore pull-left " href="#"><i class="fa fa-plus"></i><span style="font-size:16px;"> Add More</span></a></td>'
+//              cols += '<td><div class="form-group"><select class="form-control"></select></div></td>';
+            //   cols += '<td><div class="form-group"><input type="text" value="" class="form-control" /></div></td>';
+              if (flag){
+              cols += '<td><span class="ibtnDel"><i class="fa fa-trash-o text-danger"></i></span></td></tr>';
+              }
+              newRow.append(cols);
+              $("table.table").append(newRow);
+              counter++;
+       }
+
+       $(".addmoreattribute").click(function(){
+           addmorefields(1);
+           $('#totalcount').val('11');
+        });
+
+        $(".addallvalueattribute").click(function(){
+           $('#totalstage').val(stage);
+           $('#totalscore').val(stage);
+        });
+
+        $(".addallvalueattribute").click(function(){
+           $('#totalstage').val(stage);
+           $('#totalscore').val(stage);
+        });
+        function add_total(){
+            var total = 0;
+            count = (1)*(stage) + 1;
+            for(var i=1;i<count;i++){
+            var id_se = '#fare'+i;
+            total = (1)*total + (1)*$(id_se).val();
+            $('#total_price').val(total);
+        }
+
+        }
+
+
+       $("table").on("click", ".ibtnDel", function (event) {
+
+              $(this).closest("tr").remove();
+          });
+
+      $("table").on("change",".field", function (event) {
+
+              $(this).closest("td").next('td').find('div').html(createOption($(this).val()));
+          });
+
+
+           var limit = 6;
+          $('#settings td.single-checkbox input[type="checkbox"] , #companydetails td.single-checkbox input[type="checkbox"] , #activity td.single-checkbox input[type="checkbox"], #ticket td.single-checkbox input[type="checkbox"]').on( "change", function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            var elem = $(event.target);
+
+            $checkbox = $(this).parent().parent().parent().find('td.single-checkbox input[type="checkbox"]')
+            console.log($(this).parent().parent().parent().find('td.single-checkbox input[type="checkbox"]'))
+
+            if($checkbox.filter(':checked').length <= limit)
+             {
+               //alert('passsss');
+               // call your function here.
+             }
+             else{
+                $(this).prop('checked', false);
+                 alert('You can active only six fields for list.');
+             }
+})
+
+
+
+
+</script>
+
+{% endblock %}

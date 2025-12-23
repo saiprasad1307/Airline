@@ -1,0 +1,43 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body %}
+<style>
+    input[type=text][type=password]{
+    border-radius:8px;
+    width:600px;
+    height:16px;
+    }
+</style>
+
+<div style="color:Black;border:1px solid white;border-radius:8px;background-color:white;padding:50px;margin-left:30%">
+
+    <h3><strong>Make Payment - Enter Your Card Details</strong></h3><hr>
+
+    <div><img src="{% static 'images\card77.png' %}" style="width:110px;height:86px">
+        <img src="{% static 'images\atm-card.jpeg' %}" style="width:110px;height:86px">
+        <img src="{% static 'images\card44.jpg' %}" style="width:110px;height:86px">
+        <img src="{% static 'images\card3.jpg' %}" style="width:110px;height:86px">
+        <img src="{% static 'images\images.png' %}" style="border-radius:8px,border-color:2px solid black;width:110px;height:86px"></div><br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="number" placeholder="Credit Card Number" name="credit" style="border-radius:8px;width:600px;height:35px;" required><br><br>
+        <input type="text" placeholder="ATM Customer Name" name="name" style="border-radius:8px;width:600px;height:35px;" required><br><br>
+        <input type="password" placeholder="cvv number" name="cvv"  style="border-radius:8px;width:600px;height:35px;" required><br><br>
+        <input type="number" placeholder="Expiry Month" name="month" style="border-radius:8px;width:300px;height:35px;" required>
+        <input type="number" placeholder="Expiry Year" name="year" style="border-radius:8px;width:300px;height:35px;" required><br>
+
+        <br><br> <a onclick="booking('Payment successfully')" ><input type="submit" value="Make Payment" style="color:yellow;border-radius:8px;width:215px;height:35px;background-color:darkblue;border:1px solid black">
+    </form>
+
+
+</div>
+
+<script> function booking(data){
+ alert(data);
+ window.location='/mybooking/';
+}
+
+</script>
+
+
+{% endblock %}
